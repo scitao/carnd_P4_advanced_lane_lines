@@ -43,3 +43,18 @@ A polynomial fit (squared) was applied to all lane pixels found as continuous re
 #### Lane Pixel Search and Polinominal Fit
 ![alt text](https://github.com/jxkxb/carnd_P4_advanced_lane_lines/blob/master/writeup/pic_lane_find.png "Found Lanes")
 
+## 5. Lane Curvature and Offset to Lane Center
+Now, with the detected lines and the assumption that the camera is placed in the middle of the car, it was possible to calculate the lane curvature from the polinomial coeffcients and the offset of the detected lanes to the pictures middle (curvature: find_lanes.py, line 293; offset: find_lanes.py, line 234).
+Of cause, the calculated curvature and offset have to be transformed to the normal-view and scaled to the real world. The coefficients for the linear transformation to the real world was done by comparing length in the picture (pixels) to standard values provided by the US Government (find_lanes.py, line 257 & 258).
+
+## 6. Transformation and Visualiztion
+To get to the final result, the detected lanes were unwarped (back to original-view) and plotted on the video. To visualize the curvature and offset to the center of the lane, the upper area of the video was darkened (like a sun visor in the car; find_lanes.py, line 272) and the values have been plotted in this area (find_lanes.py, line 278).
+![alt text](https://github.com/jxkxb/carnd_P4_advanced_lane_lines/blob/master/writeup/pic_final_result.png "Final Result")
+
+# Discussion
+## Personal Experience
+It was a tough challenge for me but considering my background I'm am happy and proud to submit my project. The most challenging thing was to implement all the functions and do the mathmatical transformations - not from the theoretical side but from the programming side. I've learned a lot again in Python and its libraries.
+
+## Technical
+My code is able to produce good results on the project video. There's almost no wobbling and the plotted green lane would keep the car safely on track.
+I would love to and I will improve the code to make it more robust to other videos aswell. There are enough ideas I want to implement.
