@@ -68,3 +68,6 @@ It was a tough challenge for me but considering my background I'm am happy and p
 ## Technical
 My code is able to produce good results on the project video. There's almost no wobbling and the plotted green lane would keep the car safely on track.
 I would love to and I will improve the code to make it more robust to other videos aswell. There are enough ideas I want to implement.
+Examples for improvements:
+ * Improve plausibility checks for lanes (distance between lanes)
+ * Outlier detection (inter-quartile range) for lane finding in binary image
