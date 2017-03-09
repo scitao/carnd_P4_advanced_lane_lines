@@ -12,6 +12,7 @@ This writeup will be sturctured according to the goals of this project:
 4. Lane detection
 5. Calculation of lane curvature and offset to the lane center
 6. Transformation and visualization of all gathered information to original view
+7. Smoothing the lines and and plausibility check
 
 ## 1. Camera calibration and undistortion
 Every camera has a distorion due to its lenses. Thus, objects might appear in the wrong size or shape depending on where they are placed in the image. To avoid this, the camera should be properly calibrated and images should get undistored.
@@ -50,6 +51,15 @@ Of cause, the calculated curvature and offset have to be transformed to the norm
 ## 6. Transformation and Visualiztion
 To get to the final result, the detected lanes were unwarped (back to original-view) and plotted on the video. To visualize the curvature and offset to the center of the lane, the upper area of the video was darkened (like a sun visor in the car; find_lanes.py, line 272) and the values have been plotted in this area (find_lanes.py, line 278).
 ![alt text](https://github.com/jxkxb/carnd_P4_advanced_lane_lines/blob/master/writeup/pic_final_result.png "Final Result")
+
+## 7. Smoothing and Plausibility checks
+After the pipepline performed for most of the frames well there where still a few left where the left line was wobbling too much or even failed completely. That was especially the case where the color of the road changed. To improve the robustness of the lanes and avoid glitches two improvments were implemented in the end:
+ 1. Plausibility check (find_lanes.py, line 223):
+  * Check of the sign of the quadratic argumnt of polyfit for the left and the right lane is the same
+  * If not: skip frame
+ 2. Smoothing the lines by median over the last 10 frames (find_lanes.py, line 224 - 241):
+  * Append the current np.polyfit to and array with the length of 10 and delete the first one
+  * Draw the lines from the median of the 10 last frames
 
 # Discussion
 ## Personal Experience
